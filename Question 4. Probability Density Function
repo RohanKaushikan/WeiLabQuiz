@@ -1,0 +1,25 @@
+from scipy.stats import gaussian_kde
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import gaussian_kde
+
+n = 7
+num_samples = 10000
+
+X = np.random.uniform(5, 10, size=(num_samples, n))
+Y = np.min(X, axis=1)
+
+counts, bins, patches = plt.hist(Y, bins=20, density=True)
+
+kde = gaussian_kde(Y)
+x = np.linspace(Y.min(), Y.max(), 200) 
+y = kde(x)
+
+plt.plot(x, y, color='orange', linewidth=4)
+
+plt.title("PDF of Y")
+plt.xlabel("Y")
+plt.ylabel("Probability Density")
+plt.xlim(5, 10)
+
+plt.show()
