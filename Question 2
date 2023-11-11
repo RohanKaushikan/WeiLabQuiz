@@ -1,0 +1,42 @@
+from scipy.stats import pearsonr
+import pandas as pd
+from scipy.stats import spearmanr
+from scipy.stats import kendalltau
+
+df = np.loadtxt('dataset1.txt')
+target_column = df[:, 0]
+
+# Using Pearson Correlation Coefficient
+correlation_coefficients = []
+p_vals = []
+
+for column in range(1, 21):
+  feature_column = df[:, column]
+  correlation_coefficient, p_val = pearsonr(target_column, feature_column)
+  correlation_coefficients.append(correlation_coefficient)
+  p_vals.append(p_val)
+
+for i in range(0, 20):
+  print("r: " + f'{correlation_coefficients[i]}' + " p: " + f'{p_vals[i]}' + " feature: " + str(i+2))
+
+# Using Spearman Coefficient
+spearman_correlation_coefficients = []
+
+for column in range(1, 21):
+  feature_column = df[:, column]
+  spearman_correlation_coefficient, _ = spearmanr(target_column, feature_column)
+  spearman_correlation_coefficients.append(spearman_correlation_coefficient)
+
+spearman_correlation_coefficients = np.sort(spearman_correlation_coefficients)[::-1]
+spearman_correlation_coefficients
+
+# Using Kendall's Tau
+ktau_correlation_coefficients = []
+
+for column in range(1, 21):
+  feature_column = df[:, column]
+  ktau_correlation_coefficient, _ = kendalltau(target_column, feature_column)
+  ktau_correlation_coefficients.append(ktau_correlation_coefficient)
+
+ktau_correlation_coefficients = np.sort(ktau_correlation_coefficients)[::-1]
+ktau_correlation_coefficients
