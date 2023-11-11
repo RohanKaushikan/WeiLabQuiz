@@ -1,0 +1,23 @@
+# Dimensions scaled to Wei Lab example x/y ranges
+dim1 = np.clip(dim1, -3, 3)
+dim2 = np.clip(dim2, -3, 3.5)
+
+# Color, transparency, and size of points likewise adjusted
+plt.scatter(dim1, dim2, color='red', marker='o', alpha=0.25, s=4)
+
+plt.xlim(-3, 3)
+plt.ylim(-3, 3.5)
+
+# Plot dimensions setup and axis labels
+plt.gca().spines['top'].set_linewidth(0.5)
+plt.gca().spines['right'].set_linewidth(0.5)
+plt.gca().spines['bottom'].set_linewidth(0.5)
+plt.gca().spines['left'].set_linewidth(0.5)
+
+plt.xlabel('dim 1')
+plt.ylabel('dim 2')
+plt.grid(False)
+
+plt.gca().set_aspect('equal', adjustable='box')
+
+plt.show()
